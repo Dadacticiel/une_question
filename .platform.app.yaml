@@ -18,7 +18,7 @@ runtime:
 #        #opcache.preload: /app/config/preload.php
 
 relationships:
-    rabbitmqqueue: "queuerabbit:rabbitmq"
+    rabbitmq: "queuerabbit:rabbitmq"
     database: 'db:mysql'
 
 build:
