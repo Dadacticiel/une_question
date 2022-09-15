@@ -1,21 +1,66 @@
 version: '3'
 
-services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-14}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
-
 volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+  datadb:
+
+networks:
+  traefik_network:
+    external: true
+
+services:
+  back:
+    container_name: une_question_back
+    build:
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
+    environment:
+     - WEB_DOCUMENT_ROOT=/app/public
+     - APP_ENV=dev
+     - APP_DEBUG=true
+     - TZ=Europe/Paris
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+    volumes:
+      - ./:/app/
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.une-question.rule=Host(`une-question.additi.perso`)"
+     - "traefik.http.routers.une-question.middlewares=midd-gzip"
+    networks:
+     - traefik_network
+     - default
+  db:
+    container_name: une_question_db
+    image: mysql:5.7
+    restart: unless-stopped
+    command: 'mysqld --innodb_use_native_aio=0'
+    ports:
+      - 3315:3306
+    volumes:
+      - datadb:/var/lib/mysql
+     # - ./docker/dev/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=precom
+      - MYSQL_USER=une_question
+      - MYSQL_PASSWORD=precom
+      - MYSQL_DATABASE=une_question
+      - TZ=Europe/Paris
+  pma:
+    container_name: une_question_pma
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pma-une-question.rule=Host(`bdd-une-question.additi.perso`)"
+      - "traefik.http.routers.pma-une-question.middlewares=midd-gzip"
+    networks:
+      - traefik_network
+      - default
+    environment:
+      - PMA_HOST=une_question_db
+      - PMA_USER=une_question
+      - PMA_PASSWORD=precom
