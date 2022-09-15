@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Fix erreur pgsql">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Ajout lien mysql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform.app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.platform.app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663053565123</updated>
-      <workItem from="1663053566339" duration="11025000" />
+      <workItem from="1663053566339" duration="11802000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout fichiers de conf mongo et platform">
       <created>1663055750798</created>
@@ -178,7 +177,28 @@
       <option name="project" value="LOCAL" />
       <updated>1663251591554</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Supression connexion bdd postgre">
+      <created>1663251862679</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1663251862679</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Supression connexion bdd postgre">
+      <created>1663253121879</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1663253121879</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Ajout lien mysql">
+      <created>1663253335786</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1663253335786</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +224,8 @@
     <MESSAGE value="MAJ version PHP" />
     <MESSAGE value="Ajout de RabbitMQ" />
     <MESSAGE value="Fix erreur pgsql" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix erreur pgsql" />
+    <MESSAGE value="Supression connexion bdd postgre" />
+    <MESSAGE value="Ajout lien mysql" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout lien mysql" />
   </component>
 </project>

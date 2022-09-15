@@ -10,3 +10,4 @@ symfony project:init
 
 composer require platformsh/symfonyflex-bridge
 composer require php-amqplib/php-amqplib
+composer require symfony/amqp-messenger
