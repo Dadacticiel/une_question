@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="MAJ version PHP">
-      <change afterPath="$PROJECT_DIR$/src/Controller/RabbitController.php" afterDir="false" />
+    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Ajout de RabbitMQ">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.platform.app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.platform.app.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.platform/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.platform/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663053565123</updated>
-      <workItem from="1663053566339" duration="9540000" />
+      <workItem from="1663053566339" duration="10747000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout fichiers de conf mongo et platform">
       <created>1663055750798</created>
@@ -168,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663248708984</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Ajout de RabbitMQ">
+      <created>1663250014916</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1663250014916</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,6 +194,7 @@
     <MESSAGE value="Ajout relationship mongodb" />
     <MESSAGE value="Ajout d'un controller" />
     <MESSAGE value="MAJ version PHP" />
-    <option name="LAST_COMMIT_MESSAGE" value="MAJ version PHP" />
+    <MESSAGE value="Ajout de RabbitMQ" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de RabbitMQ" />
   </component>
 </project>
