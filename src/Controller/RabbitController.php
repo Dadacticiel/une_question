@@ -5,6 +5,7 @@ namespace App\Controller;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Platformsh\ConfigReader\Config;
+use Platformsh\ConfigReader\NotValidPlatformException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,12 +14,29 @@ class RabbitController
     #[Route('/rabbit', name: 'rabbit')]
     public function rabbit(): Response
     {
-        // Create a new config object to ease reading the Platform.sh environment variables.
-// You can alternatively use getenv() yourself.
-        $config = new Config();
+        try {
+            // Create a new config object to ease reading the Platform.sh environment variables.
+            // You can alternatively use getenv() yourself.
+            $config = new Config();
 
-// Get the credentials to connect to the RabbitMQ service.
-        $credentials = $config->credentials('rabbitmq');
+            // Get the credentials to connect to the RabbitMQ service.
+            $credentials = $config->credentials('rabbitmq');
+        } catch(NotValidPlatformException $e) {
+            $credentials = [
+                'host' => '127.0.0.1',
+                'port' => '30000',
+                'username' => 'guest',
+                'password' => 'guest',
+            ];
+            $credentials = [
+                'host' => 'localhost',
+                'port' => '15672',
+                'username' => 'guest',
+                'password' => 'guest',
+            ];
+        }
+
+        dd($credentials);
 
         try {
 
