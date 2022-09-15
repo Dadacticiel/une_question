@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Ajout de RabbitMQ">
+    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Fix erreur pgsql">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.platform.app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.platform.app.yaml" afterDir="false" />
     </list>
@@ -91,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663053565123</updated>
-      <workItem from="1663053566339" duration="10747000" />
+      <workItem from="1663053566339" duration="11025000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout fichiers de conf mongo et platform">
       <created>1663055750798</created>
@@ -170,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663250014916</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fix erreur pgsql">
+      <created>1663251591554</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1663251591554</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +203,7 @@
     <MESSAGE value="Ajout d'un controller" />
     <MESSAGE value="MAJ version PHP" />
     <MESSAGE value="Ajout de RabbitMQ" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de RabbitMQ" />
+    <MESSAGE value="Fix erreur pgsql" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix erreur pgsql" />
   </component>
 </project>
