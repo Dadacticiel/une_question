@@ -9,7 +9,8 @@ runtime:
         - sodium
         - ctype
         - iconv
-        
+        - amqp
+
 
 #variables:
 #    php:
