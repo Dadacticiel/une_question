@@ -49,7 +49,9 @@ class RabbitController
             $connection->close();
 
         } catch (\Exception $e) {
-            print $e->getMessage();
+            dd($e);
         }
+
+        return new Response('YEAY');
     }
 }
