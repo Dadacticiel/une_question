@@ -16,6 +16,9 @@ runtime:
 #        # uncomment on PHP 7.4+
 #        #opcache.preload: /app/config/preload.php
 
+relationships:
+    rabbitmqqueue: "queuerabbit:rabbitmq"
+
 build:
     flavor: none
 

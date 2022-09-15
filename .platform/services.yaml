@@ -1,3 +1,6 @@
 db:
     type: mysql:10.6
     disk: 512
+queuerabbit:
+    type: rabbitmq:3.9
+    disk: 512

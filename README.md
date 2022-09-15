@@ -7,3 +7,6 @@ https://symfony.com/doc/current/cloud/getting-started.html#configuring-platform-
 ```shell
 symfony project:init
 ```
+
+composer require platformsh/symfonyflex-bridge
+composer require php-amqplib/php-amqplib
