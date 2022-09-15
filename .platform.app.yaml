@@ -18,6 +18,7 @@ runtime:
 
 relationships:
     rabbitmqqueue: "queuerabbit:rabbitmq"
+    database: 'db:mysql'
 
 build:
     flavor: none
