@@ -2,11 +2,18 @@
 // src/Controller/MainController.php
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MainController
+class MainController extends AbstractController
 {
+    #[Route('/', name: 'index')]
+    public function index(): Response
+    {
+        return $this->render('base.html.twig');
+    }
+
     #[Route('/lucky/number/{max}', name: 'app_lucky_number')]
     public function number(int $max): Response
     {

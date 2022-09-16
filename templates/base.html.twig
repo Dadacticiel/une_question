@@ -11,9 +11,13 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_link_tags('vue') }}
         {% endblock %}
     </head>
     <body>
+        <div id="app"></div>
+        {{ encore_entry_script_tags('vue') }}
+        {{ encore_entry_script_tags('app') }}
         {% block body %}{% endblock %}
     </body>
 </html>
