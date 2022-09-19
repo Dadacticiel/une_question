@@ -1,20 +1,20 @@
 <template>
-    <div>
-        <div class="d-flex mt-8"
-             v-if="loading">
-            <div class="ml-auto">
-                <v-progress-circular
-                    indeterminate
-                    color="primary"
-                    size="50"
-                ></v-progress-circular>
-            </div>
-            <div class="mr-auto my-auto ml-2">
-                Chargement des messages...
-            </div>
+    <v-container fluid>
+      <div class="d-flex mt-8"
+           v-if="loading">
+        <div class="ml-auto">
+          <v-progress-circular
+              indeterminate
+              color="primary"
+              size="50"
+          ></v-progress-circular>
         </div>
-        <Message v-for="message in messages" :message="message"></Message>
-    </div>
+        <div class="mr-auto my-auto ml-2">
+          Chargement des messages...
+        </div>
+      </div>
+      <Message v-for="message in messages" :message="message"></Message>
+    </v-container>
 </template>
 
 <style lang="scss" scoped>
