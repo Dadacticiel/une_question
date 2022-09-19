@@ -7,6 +7,11 @@ https://symfony.com/doc/current/cloud/getting-started.html#configuring-platform-
 ```shell
 symfony project:init
 ```
+# Lancement de yarn
+```shell
+docker exec -ti une_question_back yarn install
+docker exec -ti une_question_back yarn run watch
+```
 
 composer require platformsh/symfonyflex-bridge
 composer require php-amqplib/php-amqplib
@@ -18,3 +23,7 @@ npm install amqplib
 Pour voir l'UI :
 ssh $(platform ssh --pipe) -L 15672:rabbitmq.internal:15672
 et ouvrir http://localhost:15672
+
+Pour se connecter au rabbitMQ de platform :
+docker exec -ti une_question_back bash
+platform tunnel:single -r rabbitmq -y

@@ -9,10 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RabbitController
 {
-    #[Route('/rabbit', name: 'rabbit')]
-    public function rabbit(RabbitService $rabbitService): Response
+    #[Route('/rabbit/{message}', name: 'rabbit')]
+    public function rabbit(string $message, RabbitService $rabbitService): Response
     {
-        $rabbitService->publishMessage('Salut toi');
+        $rabbitService->publishMessage($message ?? 'Salut toi');
 
         return new Response('Message envoyé !');
     }
@@ -20,24 +20,25 @@ class RabbitController
     #[Route('/consume', name: 'consume')]
     public function consume(RabbitService $rabbitService, LoggerInterface $logger): Response
     {
+        $test = '';
         // In a real application you't put the following in a separate script in a loop.
         $callback = function ($msg) use ($logger) {
-                $logger->info('Message received : ' . $msg->body);
+            $logger->info('Message received : ' . $msg->body);
+            $test = $msg->body;
         };
 
         $rabbitService->consume(callback: $callback);
-
-        return new Response('');
     }
 
-    #[Route('/consume-and-return', name: 'consume-and-return')]
-    public function consumeAndReturn(RabbitService $rabbitService, LoggerInterface $logger): Response
+    #[Route('/get-new-messages', name: 'get-new-messages')]
+    public function getNewMessages(RabbitService $rabbitService, LoggerInterface $logger): Response
     {
-        // In a real application you't put the following in a separate script in a loop.
-        $callback = function ($msg) use ($logger) {
-                $logger->info('Message received : ' . $msg->body);
-        };
+        return new Response(json_encode($rabbitService->getNewMessages()));
+    }
 
-        return new Response($rabbitService->consumeAndReturn(callback: $callback));
+    #[Route('/get-old-messages', name: 'get-old-messages')]
+    public function getOldMessages(RabbitService $rabbitService, LoggerInterface $logger): Response
+    {
+        return new Response(json_encode($rabbitService->getOldMessages()));
     }
 }

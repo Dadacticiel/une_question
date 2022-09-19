@@ -2,73 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Test rabbitmq">
-      <change afterPath="$PROJECT_DIR$/assets/vue/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/AssistantNote.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/DataTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/DateInput.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/ErreursOffre.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/Footer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/Header.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/Offre.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/PopupAnnulation.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/PopupReprise.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/ZonesFavoris.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/AddCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/CalendrierDates.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/Caltar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/Date.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/DateComment.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/Format.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/GenerationDates.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/Note.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/RecapitulatifDates.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/Rubrique.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/Theme.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/Zone.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/cart/ButtonsCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/cart/CaltarCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/cart/DateCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/cart/FormatCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/cart/RubriqueCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/cart/TarifCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/components/template/cart/ZoneCart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/datesStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/Cart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/CartArticle.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/Comment.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/Error.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/Remises.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/Simulateur.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/Success.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/template/ArticleCiblage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/template/D_1FM_1ZN_1RB_T_ZFT.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/template/TemplateGlobalOffre.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/template/applications/deepReach.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/vue/views/template/applications/default.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/RabbitService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vue/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/RabbitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RabbitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RabbitService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RabbitService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -100,7 +45,6 @@
     <setting file="file://$PROJECT_DIR$/src/Controller/RabbitController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Service/RabbitService.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/templates/base.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/var/log/dev.log" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AMQPChannel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AMQPStreamConnection.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -286,17 +230,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/brendan.seveno/workspace/une_question/assets",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/snap/phpstorm/289/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/brendan.seveno/workspace/une_question/assets&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/phpstorm/289/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />
@@ -338,6 +282,7 @@
       <updated>1663053565123</updated>
       <workItem from="1663053566339" duration="16470000" />
       <workItem from="1663318283738" duration="10716000" />
+      <workItem from="1663571905079" duration="11051000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout fichiers de conf mongo et platform">
       <created>1663055750798</created>

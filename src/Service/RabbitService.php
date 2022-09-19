@@ -7,11 +7,17 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Platformsh\ConfigReader\Config;
 use Platformsh\ConfigReader\NotValidPlatformException;
+use Psr\Log\LoggerInterface;
 
 class RabbitService
 {
     private $connection;
     private $channel;
+    private $messages = [];
+
+    public function __construct(private readonly LoggerInterface $logger) {
+
+    }
 
     /**
      * @param string $queue
@@ -63,29 +69,86 @@ class RabbitService
 
     public function consume($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key', $callback = null) {
         $channel = $this->getChannel($queue, $exchange, $routingKey);
-        $channel->basic_consume('test_queue', '', false, true, false, false, $callback);
+        $channel->basic_consume($queue, '', false, true, false, false, $callback);
 
-        while ($channel->is_consuming()) {
-            $channel->wait();
-        }
+
+        $channel->wait();
 
         $this->channel->close();
         $this->connection->close();
     }
 
-    public function consumeAndReturn($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key', $callback = null) {
-        $msg = null;
+    /**
+     * Récupération de tous les messages présents dans la queue "messages_read" et on les réinsère dans la queue
+     * @param $queue
+     * @param $exchange
+     * @param $routingKey
+     * @return array
+     */
+    public function getOldMessages($queue = 'messages_read', $exchange = 'test_exchange', $routingKey = 'test_key') {
         $channel = $this->getChannel($queue, $exchange, $routingKey);
-        $channel->basic_consume('test_queue', '', false, true, false, false, function($message) {
-            $this->channel->close();
-            $this->connection->close();
-            $msg = $message;
-        });
 
-        while ($channel->is_consuming()) {
+        list($queueName, $messageCount, $consumerCount) = $channel->queue_declare($queue, true);
+
+        $callback = function ($msg) use ($channel, $queue, $exchange, $routingKey) {
+            /** @var AMQPMessage $msg */
+            $this->messages[] = $msg;
+
+            // On ne valide pas la lecture du message et on le remet dans la queue
+            $msg->getChannel()->basic_nack($msg->getDeliveryTag(), false, true);
+        };
+
+        for($i = 0; $i < $messageCount; $i++) {
+            $channel->basic_consume($queue, '', false, false, false, false, $callback);
             $channel->wait();
         }
 
-        return $msg->body;
+        $channel->getConnection()->close();
+        $channel->close();
+
+        return $this->messages;
+    }
+
+    /**
+     * On va écouter consommer les nouveaux messages de la queue "messages". Va attendre si pas de nouveau message de disponible
+     * @param $queue
+     * @param $exchange
+     * @param $routingKey
+     * @param $callback
+     * @return array
+     */
+    public function getNewMessages($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key') {
+        $channel = $this->getChannel($queue, $exchange, $routingKey);
+
+        list($queueName, $messageCount, $consumerCount) = $channel->queue_declare($queue, true);
+
+        $callback = function ($msg) use ($channel, $queue, $exchange, $routingKey) {
+            /** @var AMQPMessage $msg */
+             $this->messages[] = $msg;
+             $this->logger->info('Message reçu : ' . $msg->body);
+
+//            // On ajoute ce message à la liste des messages lus
+//            $channelRead = $this->getChannel('messages_read', $exchange, $routingKey);
+//            $channelRead->basic_publish($msg, $exchange, $routingKey);
+
+            // On valide la lecture du message, on le supprime de la queue "messages"
+            $msg->getChannel()->basic_ack($msg->getDeliveryTag());
+        };
+
+        // Si pas de message dans la queue, on va en attendre 1 nouveau
+        if($messageCount === 0) {
+            $messageCount = 1;
+        }
+
+        // On va attendre d'avoir consommer tous les messages de la queue. Si aucun message n'est dans la queue, on va en attendre qu'un nouveau soit inséré
+        for($i = 0; $i < $messageCount; $i++) {
+            $channel->basic_consume($queue, '', false, false, false, false, $callback);
+            $channel->wait();
+        }
+
+        $channel->getConnection()->close();
+        $channel->close();
+
+        return $this->messages;
     }
 }
