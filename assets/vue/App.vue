@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>COUCOU</h1>
+        <Messages></Messages>
     </div>
 </template>
 
@@ -9,10 +9,10 @@
 </style>
 
 <script>
-    // var amqp = require('amqplib/callback_api');
-
+    import Messages from "./Messages";
     export default {
         name: "App",
+        components: {Messages},
         created() {
 
         }
