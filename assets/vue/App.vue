@@ -2,6 +2,8 @@
     <v-app>
         <v-app-bar app>
             Une question ?
+            <v-spacer></v-spacer>
+            <QR></QR>
         </v-app-bar>
 
         <!-- Sizes your content based upon application components -->
@@ -18,15 +20,19 @@
     </v-app>
 </template>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+    header {
+        background-color: #b1dbff;
+        font-weight: bold;
+    }
 </style>
 
 <script>
     import Messages from "./Messages";
+    import QR from "./QR";
     export default {
         name: "App",
-        components: {Messages},
+        components: {QR, Messages},
         created() {
 
         }

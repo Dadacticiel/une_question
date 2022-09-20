@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-      <div class="d-flex mt-8"
+      <div class="d-flex mt-8 animate__animated animate__pulse animate__infinite"
            v-if="loading">
         <div class="ml-auto">
           <v-progress-circular
@@ -13,7 +13,10 @@
           Chargement des messages...
         </div>
       </div>
-      <Message v-for="message in messages" :message="message"></Message>
+        <div>
+            <Message v-for="message in messages" :message="message" :new="false"></Message>
+            <Message v-for="message in newMessages" :message="message" :new="true"></Message>
+        </div>
     </v-container>
 </template>
 
@@ -32,7 +35,8 @@ export default {
     data() {
         return {
             loading: true,
-            messages: []
+            messages: [],
+            newMessages: []
         }
     },
     methods: {
@@ -41,14 +45,30 @@ export default {
 
             // Récupération des nouveaux messages
             this.$http.get('/get-new-messages').then(response => {
+                // On récupère le scroll maximum
+                let scrollMax = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+                let currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                let isAtMaxScroll = currentScroll === scrollMax;
+
                 // Ajout des nouveaux messages aux messages déjà récupérés
-                this.messages = [...this.messages, ...response.body];
+                this.newMessages = [...this.newMessages, ...response.body];
                 // On écoute à nouveau l'arrivée de nouveaux messages
                 that.getNouveauMessage();
+
+                if(isAtMaxScroll) {
+                    this.scrollToLastMessage();
+                }
             }, response => {
                 // On écoute à nouveau l'arrivée de nouveaux messages
                 that.getNouveauMessage();
             });
+        },
+        scrollToLastMessage() {
+            // On scroll dans 1ms afin que l'élément soit inséré et que le scroll max recalculé
+            setTimeout(function() {
+                let scrollMax = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+                window.scrollTo({top: scrollMax, behavior: 'smooth'});
+            }, 1);
         }
     },
     created() {
@@ -57,9 +77,12 @@ export default {
             // get body data
             this.messages = response.body;
             this.loading = false;
+            this.scrollToLastMessage();
+            // On écoute les nouveaux messages
             this.getNouveauMessage();
         }, response => {
-            // error callback
+            this.loading = false;
+            alert('Erreur lors de la récupération des anciens messages');
         });
     }
 }

@@ -27,6 +27,12 @@ const router = new VueRouter({
 })
 Vue.use(VueRouter);
 
+import VueAos from 'vue-aos'
+Vue.use(VueAos);
+
+import QrcodeVue from 'qrcode.vue'
+Vue.use(QrcodeVue);
+
 new Vue({
     router,
     vuetify,
