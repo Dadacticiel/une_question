@@ -85,7 +85,7 @@ class RabbitService
      * @param $routingKey
      * @return array
      */
-    public function getOldMessages($queue = 'messages_read', $exchange = 'test_exchange', $routingKey = 'test_key') {
+    public function getOldMessages($queue = 'messages_read', $exchange = 'test_exchange', $routingKey = 'test_key', $requeue = true) {
         $channel = $this->getChannel($queue, $exchange, $routingKey);
 
         list($queueName, $messageCount, $consumerCount) = $channel->queue_declare($queue, true);
@@ -95,7 +95,11 @@ class RabbitService
             $this->messages[] = $msg;
 
             // On ne valide pas la lecture du message et on le remet dans la queue
-            $msg->getChannel()->basic_nack($msg->getDeliveryTag(), false, true);
+            if($requeue) {
+                $msg->getChannel()->basic_nack($msg->getDeliveryTag(), false, true);
+            } else {
+                $msg->getChannel()->basic_ack($msg->getDeliveryTag());
+            }
         };
 
         for($i = 0; $i < $messageCount; $i++) {

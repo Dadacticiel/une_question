@@ -4,30 +4,25 @@ namespace App\Controller;
 
 use App\Service\RabbitService;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RabbitController
 {
-    #[Route('/rabbit/{message}', name: 'rabbit')]
-    public function rabbit(string $message, RabbitService $rabbitService): Response
+    #[Route('/publish', name: 'publish')]
+    public function publish(string $message, RabbitService $rabbitService, Request $request): Response
     {
-        $rabbitService->publishMessage($message ?? 'Salut toi');
+        $message = $request->request->get('message');
+        $rabbitService->publishMessage($message ?? "C'est vide !");
 
         return new Response('Message envoyé !');
     }
 
-    #[Route('/consume', name: 'consume')]
+    #[Route('/clear', name: 'clear')]
     public function consume(RabbitService $rabbitService, LoggerInterface $logger): Response
     {
-        $test = '';
-        // In a real application you't put the following in a separate script in a loop.
-        $callback = function ($msg) use ($logger) {
-            $logger->info('Message received : ' . $msg->body);
-            $test = $msg->body;
-        };
-
-        $rabbitService->consume(callback: $callback);
+        return new Response(json_encode($rabbitService->getOldMessages(requeue: false)));
     }
 
     #[Route('/get-new-messages', name: 'get-new-messages')]

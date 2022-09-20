@@ -1,32 +1,54 @@
 <template>
     <v-container fluid>
-      <div class="d-flex mt-8 animate__animated animate__pulse animate__infinite"
-           v-if="loading">
-        <div class="ml-auto">
-          <v-progress-circular
-              indeterminate
-              color="primary"
-              size="50"
-          ></v-progress-circular>
+        <div class="messages">
+            <div class="d-flex mt-8 animate__animated animate__pulse animate__infinite"
+                 v-if="loading">
+                <div class="ml-auto">
+                    <v-progress-circular
+                        indeterminate
+                        color="primary"
+                        size="50"
+                    ></v-progress-circular>
+                </div>
+                <div class="mr-auto my-auto ml-2">
+                    Chargement des messages...
+                </div>
+            </div>
+            <div>
+                <Message v-for="(message, key) in messages" :key="key" :message="message" :new="false"></Message>
+                <Message v-for="(message, key) in newMessages" :key="key" :message="message" :new="true"></Message>
+                <div v-if="!loading && messages.length === 0 && newMessages.length === 0" class="mt-4 animate__animated animate__fadeInDown" style="font-size: 1.5em; text-align: center;">
+                    Aucune question pour le moment :'(
+                </div>
+            </div>
         </div>
-        <div class="mr-auto my-auto ml-2">
-          Chargement des messages...
-        </div>
-      </div>
-        <div>
-            <Message v-for="message in messages" :message="message" :new="false"></Message>
-            <Message v-for="message in newMessages" :message="message" :new="true"></Message>
+        <div class="new_message">
+            <v-text-field
+                class="ma-auto"
+                label="J'ai une question !"
+                hide-details="auto"
+                placeholder="Exemple : Comment fais-tu pour être aussi charismatique ?"
+                v-model="messageEnCours"
+                solo
+            ></v-text-field>
+            <v-btn class="ml-2 my-auto" depressed color="primary" :disabled="messageEnCours.length === 0" @click="envoyerMessage">Envoyer</v-btn>
         </div>
     </v-container>
 </template>
 
 <style lang="scss" scoped>
-
+    .messages {
+        height: 84vh;
+    }
+    .new_message {
+        display: flex;
+    }
 </style>
 
 <script>
 
 import Message from "./component/Message";
+
 export default {
     name: "Messages",
     components: {
@@ -35,11 +57,22 @@ export default {
     data() {
         return {
             loading: true,
+            messageEnCours: '',
             messages: [],
             newMessages: []
         }
     },
     methods: {
+        envoyerMessage() {
+            if(this.messageEnCours.length > 0) {
+                this.$http.post('/publish', {message: this.messageEnCours}).then(response => {
+
+                }, response => {
+                    // On écoute à nouveau l'arrivée de nouveaux messages
+                    that.getNouveauMessage();
+                });
+            }
+        },
         getNouveauMessage() {
             let that = this;
 
@@ -55,7 +88,7 @@ export default {
                 // On écoute à nouveau l'arrivée de nouveaux messages
                 that.getNouveauMessage();
 
-                if(isAtMaxScroll) {
+                if (isAtMaxScroll) {
                     this.scrollToLastMessage();
                 }
             }, response => {
@@ -65,7 +98,7 @@ export default {
         },
         scrollToLastMessage() {
             // On scroll dans 1ms afin que l'élément soit inséré et que le scroll max recalculé
-            setTimeout(function() {
+            setTimeout(function () {
                 let scrollMax = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight);
                 window.scrollTo({top: scrollMax, behavior: 'smooth'});
             }, 1);
