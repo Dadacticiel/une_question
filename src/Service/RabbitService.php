@@ -15,17 +15,14 @@ class RabbitService
     private $channel;
     private $messages = [];
 
-    public function __construct(private readonly LoggerInterface $logger) {
-
-    }
-
     /**
      * @param string $queue
      * @param string $exchange
      * @param string $routingKey
      * @return AMQPChannel
      */
-    private function getChannel(string $queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key') {
+    private function getChannel(string $queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key')
+    {
         try {
             // Create a new config object to ease reading the Platform.sh environment variables.
             // You can alternatively use getenv() yourself.
@@ -33,7 +30,7 @@ class RabbitService
 
             // Get the credentials to connect to the RabbitMQ service.
             $credentials = $config->credentials('rabbitmq');
-        } catch(NotValidPlatformException $e) {
+        } catch (NotValidPlatformException $e) {
             $credentials = [
                 'host' => '127.0.0.1',
                 'port' => '30000',
@@ -57,7 +54,8 @@ class RabbitService
         }
     }
 
-    public function publishMessage(string $body, $queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key') {
+    public function publishMessage(string $body, $queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key')
+    {
         $channel = $this->getChannel($queue, $exchange, $routingKey);
 
         $msg = new AMQPMessage($body);
@@ -67,12 +65,13 @@ class RabbitService
         $this->channel->close();
     }
 
-    public function consume($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key', $callback = null) {
+    public function consume($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key', $callback = null)
+    {
         $channel = $this->getChannel($queue, $exchange, $routingKey);
         $channel->basic_consume($queue, '', false, true, false, false, $callback);
 
 
-        $channel->wait();
+        $channel->wait(timeout: 10);
 
         $this->channel->close();
         $this->connection->close();
@@ -97,16 +96,16 @@ class RabbitService
             $this->messages[] = $msg;
 
             // On ne valide pas la lecture du message et on le remet dans la queue
-            if($requeue) {
+            if ($requeue) {
                 $msg->getChannel()->basic_nack($msg->getDeliveryTag(), false, true);
             } else {
                 $msg->getChannel()->basic_ack($msg->getDeliveryTag());
             }
         };
 
-        for($i = 0; $i < $messageCount; $i++) {
+        for ($i = 0; $i < $messageCount; $i++) {
             $channel->basic_consume($queue, '', false, false, false, false, $callback);
-            $channel->wait();
+            $channel->wait(timeout: 10);
         }
 
         $channel->getConnection()->close();
@@ -123,15 +122,16 @@ class RabbitService
      * @param $callback
      * @return array
      */
-    public function getNewMessages($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key') {
+    public function getNewMessages($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key')
+    {
         $channel = $this->getChannel($queue, $exchange, $routingKey);
 
         list($queueName, $messageCount, $consumerCount) = $channel->queue_declare($queue, true);
 
         $callback = function ($msg) use ($channel, $queue, $exchange, $routingKey) {
             /** @var AMQPMessage $msg */
-             $this->messages[] = $msg;
-             $this->logger->info('Message reçu : ' . $msg->body);
+            $this->messages[] = $msg;
+            $this->logger->info('Message reçu : ' . $msg->body);
 
 //            // On ajoute ce message à la liste des messages lus
 //            $channelRead = $this->getChannel('messages_read', $exchange, $routingKey);
@@ -142,14 +142,14 @@ class RabbitService
         };
 
         // Si pas de message dans la queue, on va en attendre 1 nouveau
-        if($messageCount === 0) {
+        if ($messageCount === 0) {
             $messageCount = 1;
         }
 
         // On va attendre d'avoir consommer tous les messages de la queue. Si aucun message n'est dans la queue, on va en attendre qu'un nouveau soit inséré
-        for($i = 0; $i < $messageCount; $i++) {
+        for ($i = 0; $i < $messageCount; $i++) {
             $channel->basic_consume($queue, '', false, false, false, false, $callback);
-            $channel->wait();
+            $channel->wait(timeout: 10);
         }
 
         $channel->getConnection()->close();
