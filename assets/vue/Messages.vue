@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <div class="messages">
+        <div id="messages">
             <div class="d-flex mt-8 animate__animated animate__pulse animate__infinite"
                  v-if="loading">
                 <div class="ml-auto">
@@ -41,8 +41,10 @@
 </template>
 
 <style lang="scss" scoped>
-    .messages {
-        height: 84vh;
+    #messages {
+        height: calc(100vh - 56px - 85px);
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     .new_message {
         display: flex;
@@ -85,8 +87,8 @@ export default {
             // Récupération des nouveaux messages
             this.$http.get('/get-new-messages').then(response => {
                 // On récupère le scroll maximum
-                let scrollMax = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-                let currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                let scrollMax = window.scrollMaxY || (document.getElementById('messages').scrollHeight - document.getElementById('messages').scrollTop.clientHeight);
+                let currentScroll = document.getElementById('messages').scrollTop;
                 let isAtMaxScroll = currentScroll === scrollMax;
 
                 // Ajout des nouveaux messages aux messages déjà récupérés
@@ -105,8 +107,8 @@ export default {
         scrollToLastMessage() {
             // On scroll dans 1ms afin que l'élément soit inséré et que le scroll max recalculé
             setTimeout(function () {
-                let scrollMax = window.scrollMaxY || (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-                window.scrollTo({top: scrollMax, behavior: 'smooth'});
+                let scrollMax = document.getElementById('messages').scrollMaxY || (document.getElementById('messages').scrollHeight - document.getElementById('messages').clientHeight);
+                document.getElementById('messages').scrollTo({top: scrollMax, behavior: 'smooth'});
             }, 1);
         }
     },

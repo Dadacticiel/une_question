@@ -21,6 +21,10 @@
 </template>
 
 <style lang="scss">
+    html {
+        overflow: hidden;
+    }
+
     header {
         background-color: #b1dbff;
         font-weight: bold;

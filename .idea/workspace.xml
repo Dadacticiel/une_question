@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Ajout yarn lock">
+    <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Envoi du message">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vue/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/vue/Messages.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/Messages.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/vue/component/Message.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/component/Message.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RabbitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RabbitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RabbitService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RabbitService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -500,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663674681315</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Envoi du message">
+      <created>1663754626066</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1663754626066</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,6 +542,7 @@
     <MESSAGE value="Fix librairy version" />
     <MESSAGE value="Ajout d'un gitkeep pour platform" />
     <MESSAGE value="Ajout yarn lock" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout yarn lock" />
+    <MESSAGE value="Envoi du message" />
+    <option name="LAST_COMMIT_MESSAGE" value="Envoi du message" />
   </component>
 </project>
