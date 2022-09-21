@@ -27,7 +27,6 @@ export default {
     created() {
         let that = this;
         if(this.new) {
-            debugger
             this.isNew = true;
 
             setTimeout(function() {

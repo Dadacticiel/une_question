@@ -11,9 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class RabbitController
 {
     #[Route('/publish', name: 'publish')]
-    public function publish(string $message, RabbitService $rabbitService, Request $request): Response
+    public function publish(RabbitService $rabbitService, Request $request): Response
     {
-        $message = $request->request->get('message');
+        $params = json_decode($request->getContent(), true);
+        $message = $params['message'];
         $rabbitService->publishMessage($message ?? "C'est vide !");
 
         return new Response('Message envoyé !');

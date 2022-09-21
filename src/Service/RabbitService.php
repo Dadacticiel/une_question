@@ -83,14 +83,16 @@ class RabbitService
      * @param $queue
      * @param $exchange
      * @param $routingKey
+     * @param $requeue
      * @return array
      */
-    public function getOldMessages($queue = 'messages_read', $exchange = 'test_exchange', $routingKey = 'test_key', $requeue = true) {
+    public function getOldMessages($queue = 'messages_read', $exchange = 'test_exchange', $routingKey = 'test_key', $requeue = true): array
+    {
         $channel = $this->getChannel($queue, $exchange, $routingKey);
 
         list($queueName, $messageCount, $consumerCount) = $channel->queue_declare($queue, true);
 
-        $callback = function ($msg) use ($channel, $queue, $exchange, $routingKey) {
+        $callback = function ($msg) use ($channel, $queue, $exchange, $routingKey, $requeue) {
             /** @var AMQPMessage $msg */
             $this->messages[] = $msg;
 

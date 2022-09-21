@@ -29,9 +29,13 @@
                 hide-details="auto"
                 placeholder="Exemple : Comment fais-tu pour être aussi charismatique ?"
                 v-model="messageEnCours"
+                v-on:keyup.enter="envoyerMessage"
                 solo
             ></v-text-field>
-            <v-btn class="ml-2 my-auto" depressed color="primary" :disabled="messageEnCours.length === 0" @click="envoyerMessage">Envoyer</v-btn>
+            <v-btn class="ml-2 my-auto" depressed
+                   color="primary"
+                   :loading="sending"
+                   :disabled="messageEnCours.length === 0 || sending" @click="envoyerMessage">Envoyer</v-btn>
         </div>
     </v-container>
 </template>
@@ -58,6 +62,7 @@ export default {
         return {
             loading: true,
             messageEnCours: '',
+            sending: false,
             messages: [],
             newMessages: []
         }
@@ -65,11 +70,12 @@ export default {
     methods: {
         envoyerMessage() {
             if(this.messageEnCours.length > 0) {
+                this.sending = true;
                 this.$http.post('/publish', {message: this.messageEnCours}).then(response => {
-
+                    this.sending = false;
+                    this.messageEnCours = '';
                 }, response => {
-                    // On écoute à nouveau l'arrivée de nouveaux messages
-                    that.getNouveauMessage();
+                    this.sending = false;
                 });
             }
         },
