@@ -1,6 +1,22 @@
 <template>
     <v-container fluid>
-        <div id="messages">
+        <v-card v-if="!unlocked" class="mx-auto my-12"  max-width="374">
+            <v-card-title>
+              Espace protégé
+            </v-card-title>
+          <div class="pa-5">
+            <v-text-field
+                type="password"
+                label="Mot de passe"
+                v-model="password"
+                v-on:keyup.enter="checkPassword"
+            ></v-text-field>
+            <div class="d-flex">
+              <v-btn class="ml-auto" color="primary" @click="checkPassword">Login</v-btn>
+            </div>
+          </div>
+        </v-card>
+        <div id="messages" v-if="unlocked">
             <div class="d-flex mt-8 animate__animated animate__pulse animate__infinite"
                  v-if="loading">
                 <div class="ml-auto">
@@ -30,12 +46,14 @@
         height: calc(100vh - 93px);
         overflow-y: scroll;
         overflow-x: hidden;
+       font-size: 2em;
     }
 </style>
 
 <script>
 
 import Message from "./component/Message";
+const pagePassword = 7376222959731466;
 
 export default {
     name: "Messages",
@@ -47,11 +65,33 @@ export default {
             loading: true,
             messageEnCours: '',
             sending: false,
+            password: '',
             messages: [],
-            newMessages: []
+            newMessages: [],
+            unlocked: false
         }
     },
     methods: {
+        checkPassword() {
+            if(this.hash(this.password) === pagePassword) {
+                this.getMessages();
+                this.unlocked = true;
+            }
+        },
+        hash(str, seed = 0) {
+            let h1 = 0xdeadbeef ^ seed,
+                h2 = 0x41c6ce57 ^ seed;
+            for (let i = 0, ch; i < str.length; i++) {
+              ch = str.charCodeAt(i);
+              h1 = Math.imul(h1 ^ ch, 2654435761);
+              h2 = Math.imul(h2 ^ ch, 1597334677);
+            }
+
+            h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+            h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+
+            return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+        },
         envoyerMessage() {
             if(this.messageEnCours.length > 0) {
                 this.sending = true;
@@ -94,21 +134,21 @@ export default {
                 let scrollMax = document.getElementById('messages').scrollMaxY || (document.getElementById('messages').scrollHeight - document.getElementById('messages').clientHeight);
                 document.getElementById('messages').scrollTo({top: scrollMax, behavior: 'smooth'});
             }, 1);
-        }
-    },
-    created() {
-        // Récupération des messages
-        this.$http.get('/get-old-messages').then(response => {
+        },
+        getMessages() {
+          // Récupération des messages
+          this.$http.get('/get-old-messages').then(response => {
             // get body data
             this.messages = response.body;
             this.loading = false;
             this.scrollToLastMessage();
             // On écoute les nouveaux messages
             this.getNouveauMessage();
-        }, response => {
+          }, response => {
             this.loading = false;
             alert('Erreur lors de la récupération des anciens messages');
-        });
+          });
+        }
     }
 }
 </script>

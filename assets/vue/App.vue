@@ -29,6 +29,7 @@
     header {
         background-color: #b1dbff;
         font-weight: bold;
+        font-size: 1.5em;
     }
 </style>
 
