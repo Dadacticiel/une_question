@@ -6,6 +6,7 @@
             <QR></QR>
         </v-app-bar>
 
+
         <!-- Sizes your content based upon application components -->
         <v-main>
           <router-view></router-view>
