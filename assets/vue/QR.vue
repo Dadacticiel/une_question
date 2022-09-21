@@ -67,7 +67,7 @@ export default {
         }
     },
     created() {
-        this.value = window.location.href;
+        this.value = window.location.origin;
     }
 }
 </script>

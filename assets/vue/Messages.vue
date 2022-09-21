@@ -22,32 +22,14 @@
                 </div>
             </div>
         </div>
-        <div class="new_message">
-            <v-text-field
-                class="ma-auto"
-                label="J'ai une question !"
-                hide-details="auto"
-                placeholder="Exemple : Comment fais-tu pour être aussi charismatique ?"
-                v-model="messageEnCours"
-                v-on:keyup.enter="envoyerMessage"
-                solo
-            ></v-text-field>
-            <v-btn class="ml-2 my-auto" depressed
-                   color="primary"
-                   :loading="sending"
-                   :disabled="messageEnCours.length === 0 || sending" @click="envoyerMessage">Envoyer</v-btn>
-        </div>
     </v-container>
 </template>
 
 <style lang="scss" scoped>
     #messages {
-        height: calc(100vh - 56px - 85px);
+        height: calc(100vh - 93px);
         overflow-y: scroll;
         overflow-x: hidden;
-    }
-    .new_message {
-        display: flex;
     }
 </style>
 
@@ -87,9 +69,11 @@ export default {
             // Récupération des nouveaux messages
             this.$http.get('/get-new-messages').then(response => {
                 // On récupère le scroll maximum
-                let scrollMax = window.scrollMaxY || (document.getElementById('messages').scrollHeight - document.getElementById('messages').scrollTop.clientHeight);
+                let scrollMax = document.getElementById('messages').scrollMaxY || (document.getElementById('messages').scrollHeight - document.getElementById('messages').clientHeight);
                 let currentScroll = document.getElementById('messages').scrollTop;
                 let isAtMaxScroll = currentScroll === scrollMax;
+
+                debugger
 
                 // Ajout des nouveaux messages aux messages déjà récupérés
                 this.newMessages = [...this.newMessages, ...response.body];

@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'index')]
+    #[Route('/questions', name: 'questions')]
     public function index(): Response
     {
         return $this->render('base.html.twig');

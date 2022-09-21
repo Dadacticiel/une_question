@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36d26e48-7d73-46bc-8313-3b2829765b23" name="Changes" comment="Envoi du message">
+      <change afterPath="$PROJECT_DIR$/assets/vue/Question.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/vue/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/vue/Messages.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/Messages.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vue/QR.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/QR.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/vue/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/vue/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,6 +260,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "last_opened_file_path": "/home/brendan.seveno/workspace/une_question/assets/vue",
     "ts.external.directory.path": "/snap/phpstorm/289/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
   }
 }]]></component>
@@ -505,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663754626066</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Envoi du message">
+      <created>1663755658376</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1663755658376</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
