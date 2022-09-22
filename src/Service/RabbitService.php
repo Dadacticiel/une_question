@@ -15,6 +15,9 @@ class RabbitService
     private $channel;
     private $messages = [];
 
+    public function __construct(private readonly LoggerInterface $logger) {
+    }
+
     /**
      * @param string $queue
      * @param string $exchange
