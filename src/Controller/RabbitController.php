@@ -20,6 +20,22 @@ class RabbitController
         return new Response('Message envoyé !');
     }
 
+    #[Route('/applause', name: 'applause')]
+    public function applause(RabbitService $rabbitService, Request $request): Response
+    {
+        $rabbitService->publishMessage(body: "applause", queue: "applause", exchange: "reactions");
+
+        return new Response('Applause envoyé !');
+    }
+
+    #[Route('/heart', name: 'heart')]
+    public function heart(RabbitService $rabbitService, Request $request): Response
+    {
+        $rabbitService->publishMessage(body: "heart", queue: "heart", exchange: "reactions");
+
+        return new Response('Heart envoyé !');
+    }
+
     #[Route('/clear', name: 'clear')]
     public function consume(RabbitService $rabbitService, LoggerInterface $logger): Response
     {

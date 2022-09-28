@@ -27,13 +27,13 @@
                     <div class="ma-auto">
                         <v-btn depressed
                                color="primary">
-                            <v-icon color="yellow">
+                            <v-icon color="yellow" @click="react('applause')">
                                 mdi-hand-clap
                             </v-icon>
                         </v-btn>
                         <v-btn depressed
                                color="primary">
-                            <v-icon color="pink">
+                            <v-icon color="pink" @click="react('heart')">
                                 mdi-heart
                             </v-icon>
                         </v-btn>
@@ -74,6 +74,16 @@ export default {
                 this.$http.post('/publish', {message: this.messageEnCours}).then(response => {
                     this.sending = false;
                     this.messageEnCours = '';
+                }, response => {
+                    this.sending = false;
+                });
+            }
+        },
+        react(type) {
+            if(this.messageEnCours.length > 0) {
+                this.sending = true;
+                this.$http.post('/'+type).then(response => {
+                    this.sending = false;
                 }, response => {
                     this.sending = false;
                 });

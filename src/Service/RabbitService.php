@@ -148,6 +148,8 @@ class RabbitService
         // On va attendre d'avoir consommer tous les messages de la queue. Si aucun message n'est dans la queue, on va en attendre qu'un nouveau soit inséré
         for ($i = 0; $i < $messageCount; $i++) {
             $channel->basic_consume($queue, '', false, false, false, false, $callback);
+            $channel->basic_consume('applause', '', false, false, false, false, $callback);
+            $channel->basic_consume('heart', '', false, false, false, false, $callback);
             $channel->wait(timeout: 10);
         }
 
