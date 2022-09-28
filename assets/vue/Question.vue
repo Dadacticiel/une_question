@@ -26,14 +26,14 @@
                 <v-col sm="12" lg="8" class="d-flex ma-auto">
                     <div class="ma-auto">
                         <v-btn depressed
-                               color="primary">
-                            <v-icon color="yellow" @click="react('applause')">
+                               color="primary" @click="react('applause')">
+                            <v-icon color="yellow">
                                 mdi-hand-clap
                             </v-icon>
                         </v-btn>
                         <v-btn depressed
-                               color="primary">
-                            <v-icon color="pink" @click="react('heart')">
+                               color="primary" @click="react('heart')">
+                            <v-icon color="pink">
                                 mdi-heart
                             </v-icon>
                         </v-btn>
@@ -80,14 +80,12 @@ export default {
             }
         },
         react(type) {
-            if(this.messageEnCours.length > 0) {
-                this.sending = true;
-                this.$http.post('/'+type).then(response => {
-                    this.sending = false;
-                }, response => {
-                    this.sending = false;
-                });
-            }
+            this.sending = true;
+            this.$http.post('/'+type).then(response => {
+                this.sending = false;
+            }, response => {
+                this.sending = false;
+            });
         },
     },
     created() {

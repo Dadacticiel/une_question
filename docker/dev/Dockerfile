@@ -16,4 +16,8 @@ RUN curl -sS https://getcomposer.org/installer | \
 	
 COPY ./composer.* /app/
 
+RUN curl -fsS https://platform.sh/cli/installer | php
+RUN export PLATFORMSH_CLI_TOKEN=tEXj3SrR4Kq1O_v1h-GnvEsb5MxMRpHgfo40MsTytMM
+RUN platform auth:api-token-login -y
+
 WORKDIR /app
