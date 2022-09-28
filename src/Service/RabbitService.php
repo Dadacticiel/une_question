@@ -136,10 +136,6 @@ class RabbitService
             $this->messages[] = $msg;
             $this->logger->info('Message reçu : ' . $msg->body);
 
-//            // On ajoute ce message à la liste des messages lus
-//            $channelRead = $this->getChannel('messages_read', $exchange, $routingKey);
-//            $channelRead->basic_publish($msg, $exchange, $routingKey);
-
             // On valide la lecture du message, on le supprime de la queue "messages"
             $msg->getChannel()->basic_ack($msg->getDeliveryTag());
         };
