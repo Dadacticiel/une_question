@@ -15,7 +15,7 @@ class RabbitController
     {
         $params = json_decode($request->getContent(), true);
         $message = $params['message'];
-        $rabbitService->publishMessage($message ?? "C'est vide !");
+        $rabbitService->publishMessage($message ?? "C'est vide !", 'messages');
 
         return new Response('Message envoyé !');
     }
@@ -23,15 +23,15 @@ class RabbitController
     #[Route('/applause', name: 'applause')]
     public function applause(RabbitService $rabbitService, Request $request): Response
     {
-        $rabbitService->publishMessage(body: "applause", queue: "applause", exchange: "reactions");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
 
-        return new Response('Applause envoyé !');
+        return new Response('Clap envoyé !');
     }
 
     #[Route('/heart', name: 'heart')]
     public function heart(RabbitService $rabbitService, Request $request): Response
     {
-        $rabbitService->publishMessage(body: "heart", queue: "heart", exchange: "reactions");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
 
         return new Response('Heart envoyé !');
     }

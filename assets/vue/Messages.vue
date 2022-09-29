@@ -38,6 +38,13 @@
                 </div>
             </div>
         </div>
+        <div id="reactions">
+            <i v-for="(reaction, key) in reactions"
+               :key="key"
+               aria-hidden="true"
+               :style="'left: ' + reaction.left + '%;top: ' + reaction.top + '%;'"
+               :class="'v-icon notranslate mdi '+(reaction.type === 'clap' ? 'mdi-hand-clap yellow--text' : 'mdi-heart pink--text')+' theme--light ' + reaction.animation"></i>
+        </div>
     </v-container>
 </template>
 
@@ -46,7 +53,17 @@
         height: calc(100vh - 93px);
         overflow-y: scroll;
         overflow-x: hidden;
-       font-size: 2em;
+        font-size: 2em;
+    }
+
+    #reactions {
+        position: fixed;
+        top: 80%;
+    }
+
+    #reactions i {
+        font-size: 7em;
+        position: fixed;
     }
 </style>
 
@@ -64,14 +81,22 @@ export default {
         return {
             loading: true,
             messageEnCours: '',
-            sending: false,
             password: '',
             messages: [],
+            reactions: [],
             newMessages: [],
             unlocked: false
         }
     },
     methods: {
+        getRandomAnimationEntrance() {
+            let animations = [
+                'animate__animated animate__fadeInUp animate__fadeOutUp'
+            ]
+        },
+        randomIntFromInterval(min, max) { // min and max included
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        },
         checkPassword() {
             if(this.hash(this.password) === pagePassword) {
                 this.getMessages();
@@ -92,17 +117,6 @@ export default {
 
             return 4294967296 * (2097151 & h2) + (h1 >>> 0);
         },
-        envoyerMessage() {
-            if(this.messageEnCours.length > 0) {
-                this.sending = true;
-                this.$http.post('/publish', {message: this.messageEnCours}).then(response => {
-                    this.sending = false;
-                    this.messageEnCours = '';
-                }, response => {
-                    this.sending = false;
-                });
-            }
-        },
         getNouveauMessage() {
             let that = this;
 
@@ -111,12 +125,20 @@ export default {
                 // On récupère le scroll maximum
                 let scrollMax = document.getElementById('messages').scrollMaxY || (document.getElementById('messages').scrollHeight - document.getElementById('messages').clientHeight);
                 let currentScroll = document.getElementById('messages').scrollTop;
-                let isAtMaxScroll = currentScroll === scrollMax;
+                // If we are at the last 30% of the page
+                let isAtMaxScroll = currentScroll >= scrollMax - (scrollMax*0.3);
 
-                debugger
+                response.body.forEach(content => {
+                    if(content.delivery_info.exchange === "reactions") {
+                        let newLength = this.reactions.push({type: content.body, left: that.randomIntFromInterval(10, 90), top: that.randomIntFromInterval(75, 85), animation: 'animate__animated animate__fadeInUp animate__pulse'});
+                        setTimeout(function() {
+                            that.reactions[newLength-1].animation = 'animate__animated animate__fadeOutUp';
+                        }, 1000);
+                    } else {
+                        this.newMessages.push(content);
+                    }
+                })
 
-                // Ajout des nouveaux messages aux messages déjà récupérés
-                this.newMessages = [...this.newMessages, ...response.body];
                 // On écoute à nouveau l'arrivée de nouveaux messages
                 that.getNouveauMessage();
 

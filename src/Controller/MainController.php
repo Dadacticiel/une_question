@@ -2,6 +2,7 @@
 // src/Controller/MainController.php
 namespace App\Controller;
 
+use App\Service\RabbitService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,8 +11,10 @@ class MainController extends AbstractController
 {
     #[Route('/', name: 'index')]
     #[Route('/questions', name: 'questions')]
-    public function index(): Response
+    public function index(RabbitService $rabbitService): Response
     {
+        $rabbitService->initEchangesAndQueues();
+
         return $this->render('base.html.twig');
     }
 

@@ -3,7 +3,7 @@
         <div class="new_message">
             <v-container fluid>
             <v-row>
-                <v-col sm="12" lg="8" class="d-flex ma-auto">
+                <v-col sm="12" lg="8" class="ma-auto d-sm-flex d-md-flex d-lg-flex d-xl-flex text-center">
                     <v-text-field
                         class="ma-auto"
                         label="J'ai une question !"
@@ -13,33 +13,33 @@
                         v-on:keyup.enter="envoyerMessage"
                         solo
                     ></v-text-field>
-                    <v-btn class="ml-2 my-auto" depressed
+                    <v-btn class="ml-sm-2 ml-md-2 ml-lg-2 ml-xl-2 mt-6 my-sm-auto my-md-auto my-lg-auto my-xl-auto" depressed
                            color="primary"
                            :loading="sending"
                            :disabled="messageEnCours.length === 0 || sending" @click="envoyerMessage">Envoyer</v-btn>
                 </v-col>
             </v-row>
-            <v-row>
-                <v-col xs="12" class="text-center mt-4 pb-0">
+            <div class="reactions">
+                <div class="text-center mt-10 pb-2">
                     <b>Réactions live :</b>
-                </v-col>
-                <v-col sm="12" lg="8" class="d-flex ma-auto">
+                </div>
+                <div class="d-flex ma-auto">
                     <div class="ma-auto">
-                        <v-btn depressed
+                        <v-btn depressed large
                                color="primary" @click="react('applause')">
-                            <v-icon color="yellow">
+                            <v-icon color="yellow" style="font-size: 3em;">
                                 mdi-hand-clap
                             </v-icon>
                         </v-btn>
-                        <v-btn depressed
+                        <v-btn depressed large
                                color="primary" @click="react('heart')">
-                            <v-icon color="pink">
+                            <v-icon color="pink" style="font-size: 3em;">
                                 mdi-heart
                             </v-icon>
                         </v-btn>
                     </div>
-                </v-col>
-            </v-row>
+                </div>
+            </div>
             </v-container>
         </div>
     </v-container>
@@ -47,7 +47,7 @@
 
 <style lang="scss" scoped>
     .new_message {
-        margin: 50px;
+        margin-top: 50px;
         display: flex;
     }
 </style>
@@ -80,11 +80,8 @@ export default {
             }
         },
         react(type) {
-            this.sending = true;
             this.$http.post('/'+type).then(response => {
-                this.sending = false;
             }, response => {
-                this.sending = false;
             });
         },
     },

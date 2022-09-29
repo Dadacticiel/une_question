@@ -68,6 +68,18 @@ export default {
     },
     created() {
         this.value = window.location.origin;
+        window.addEventListener('resize', this.checkWindowSize)
+        this.checkWindowSize();
+    },
+    methods: {
+        checkWindowSize() {
+            let viewport_width = window.innerWidth;
+            if(viewport_width < 400+48) {
+                this.size = viewport_width-48;
+            } else {
+                this.size = 400;
+            }
+        }
     }
 }
 </script>
