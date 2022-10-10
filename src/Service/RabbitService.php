@@ -78,14 +78,16 @@ class RabbitService
         }
     }
 
-    public function publishMessage(string $body, $exchange, $routingKey = '')
+    public function publishMessage(string $body, $exchange, $routingKey = '', $close = true)
     {
         $channel = $this->getChannel();
 
         $msg = new AMQPMessage($body);
         $channel->basic_publish($msg, $exchange, $routingKey);
 
-        $this->channel->close();
+        if($close) {
+            $this->channel->close();
+        }
     }
 
     public function consume($queue = 'messages', $exchange = 'test_exchange', $routingKey = '', $callback = null)
