@@ -35,6 +35,8 @@ class RabbitService
         $this->channel->queue_bind('messages_read', 'messages');
         $this->channel->queue_bind('claps', 'reactions', 'clap');
         $this->channel->queue_bind('hearts', 'reactions', 'heart');
+
+        $this->channel->close();
     }
 
     /**
@@ -83,7 +85,6 @@ class RabbitService
         $msg = new AMQPMessage($body);
         $channel->basic_publish($msg, $exchange, $routingKey);
 
-        $this->channel->close();
         $this->channel->close();
     }
 
