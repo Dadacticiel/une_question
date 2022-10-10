@@ -76,7 +76,7 @@ class RabbitService
         }
     }
 
-    public function publishMessage(string $body, $exchange, $routingKey = null)
+    public function publishMessage(string $body, $exchange, $routingKey = '')
     {
         $channel = $this->getChannel();
 
@@ -84,10 +84,9 @@ class RabbitService
         $channel->basic_publish($msg, $exchange, $routingKey);
 
         $this->channel->close();
-        $this->channel->close();
     }
 
-    public function consume($queue = 'messages', $exchange = 'test_exchange', $routingKey = 'test_key', $callback = null)
+    public function consume($queue = 'messages', $exchange = 'test_exchange', $routingKey = '', $callback = null)
     {
         $channel = $this->getChannel();
         $channel->basic_consume($queue, '', false, true, false, false, $callback);
