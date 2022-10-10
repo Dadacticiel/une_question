@@ -6,7 +6,7 @@
 
 <style lang="scss" scoped>
     .message {
-        background-color: #7fffd44a;
+        background-color: rgb(255 195 134 / 38%);
         padding: 10px;
         border-radius: 10px;
         margin: 10px;

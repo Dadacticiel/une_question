@@ -27,10 +27,15 @@
     }
 
     header {
-        background-color: #b1dbff;
+        background-color: #ffe0b6 !important;
         font-weight: bold;
         font-size: 1.5em;
     }
+
+    .v-main__wrap {
+        background-color: antiquewhite;
+    }
+
 </style>
 
 <script>
