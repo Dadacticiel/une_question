@@ -53,4 +53,126 @@ class RabbitController
     {
         return new Response(json_encode($rabbitService->getOldMessages()));
     }
+
+
+    #[Route('/mad', name: 'mad')]
+    public function mad(RabbitService $rabbitService, Request $request): Response
+    {
+        $params = json_decode($request->getContent(), true);
+        $rabbitService->publishMessage("Merci, c'était super !", 'messages');
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+
+        usleep(100);
+        $rabbitService->publishMessage("Merci", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("Bravo", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+
+        usleep(100);
+        $rabbitService->publishMessage("Super présentation", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("Meilleur sujet du meetup !", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("On veut plus de télétravail !", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("Super, vous devriez être sponsorisés par Platform.sh", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("Gloire aux devs !", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("Êtes-vous disponibles pour rejoindre nos équipes ??", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("Brendan, donne moi ton 06 !", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        usleep(100);
+        $rabbitService->publishMessage("C'était top", 'messages');
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "heart", exchange: "reactions", routingKey: "heart");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+        $rabbitService->publishMessage(body: "clap", exchange: "reactions", routingKey: "clap");
+
+        return new Response('Message envoyé !');
+    }
 }
