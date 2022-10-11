@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="qr_fixed">
+        <div id="qr_fixed" v-if="$route.path == '/questions'">
             <qrcode-vue class="ma-auto" :value="value" :size="size" level="H" />
         </div>
 
@@ -26,7 +26,7 @@
                     QR Code
                 </v-card-title>
 
-                <v-card-text class="mt-4">
+                <v-card-text class="mt-4" style="font-size: 2em;">
                     Vous avez une question ?
                 </v-card-text>
 
