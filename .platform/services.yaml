@@ -3,4 +3,4 @@ db:
     disk: 512
 queuerabbit:
     type: rabbitmq:3.9
-    disk: 512
+    disk: 2048

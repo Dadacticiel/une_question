@@ -1,54 +1,65 @@
 <template>
-    <v-dialog
-        v-model="dialog"
-        width="500"
-    >
-        <template v-slot:activator="{ on, attrs }">
-            <v-btn
-                color="red lighten-2"
-                dark
-                v-bind="attrs"
-                v-on="on"
-            >
-                <v-icon>
-                    mdi-qrcode-scan
-                </v-icon>
-            </v-btn>
-        </template>
+    <div>
+        <div id="qr_fixed">
+            <qrcode-vue class="ma-auto" :value="value" :size="size" level="H" />
+        </div>
 
-        <v-card>
-            <v-card-title class="text-h5 grey lighten-2">
-                QR Code
-            </v-card-title>
-
-            <v-card-text class="mt-4">
-                Vous avez une question ?
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <div class="d-flex mt-4">
-                <qrcode-vue class="ma-auto" :value="value" :size="size" level="H" />
-            </div>
-
-
-
-            <v-card-actions>
-                <v-spacer></v-spacer>
+        <v-dialog
+            v-model="dialog"
+            width="500"
+        >
+            <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                    color="primary"
-                    text
-                    @click="dialog = false"
+                    color="red lighten-2"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
                 >
-                    Fermer
+                    <v-icon>
+                        mdi-qrcode-scan
+                    </v-icon>
                 </v-btn>
-            </v-card-actions>
-        </v-card>
-    </v-dialog>
+            </template>
+
+            <v-card>
+                <v-card-title class="text-h5 grey lighten-2">
+                    QR Code
+                </v-card-title>
+
+                <v-card-text class="mt-4">
+                    Vous avez une question ?
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <div class="d-flex mt-4">
+                    <qrcode-vue class="ma-auto" :value="value" :size="size" level="H" />
+                </div>
+
+
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        color="primary"
+                        text
+                        @click="dialog = false"
+                    >
+                        Fermer
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </div>
+
 </template>
 
 <style lang="scss" scoped>
-
+    #qr_fixed {
+        position: fixed;
+        right: 15px;
+        top: 80px;
+    }
 </style>
 
 <script>

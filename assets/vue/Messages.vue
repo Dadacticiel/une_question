@@ -50,6 +50,7 @@
 
 <style lang="scss" scoped>
     #messages {
+        padding-right: 400px;
         height: calc(100vh - 93px);
         overflow-y: scroll;
         overflow-x: hidden;
