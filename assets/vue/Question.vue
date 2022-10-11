@@ -4,16 +4,17 @@
             <v-container fluid>
             <v-row>
                 <v-col sm="12" lg="8" class="ma-auto d-sm-flex d-md-flex d-lg-flex d-xl-flex text-center">
-                    <v-text-field
-                        class="ma-auto"
+                    <v-textarea
                         label="J'ai une question !"
-                        hide-details="auto"
-                        placeholder="Exemple : Comment faites-vous pour être aussi charismatique ?"
+                        placeholder="Exemple : Comment faites-vous pour être aussi charismatiques ?"
+                        auto-grow
+                        outlined
+                        rows="3"
                         v-model="messageEnCours"
                         v-on:keyup.enter="envoyerMessage"
-                        solo
-                    ></v-text-field>
-                    <v-btn class="ml-sm-2 ml-md-2 ml-lg-2 ml-xl-2 mt-6 my-sm-auto my-md-auto my-lg-auto my-xl-auto" depressed
+                    ></v-textarea>
+
+                    <v-btn class="ml-sm-2 ml-md-2 ml-lg-2 ml-xl-2 mt-0 my-sm-auto my-md-auto my-lg-auto my-xl-auto" depressed
                            color="primary"
                            :loading="sending"
                            :disabled="messageEnCours.length === 0 || sending" @click="envoyerMessage">Envoyer</v-btn>
